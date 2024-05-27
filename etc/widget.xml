@@ -1,0 +1,91 @@
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget class="DnTukadiya\HyvaWidgets\Block\Widget\BrandSlider" id="dntukadiya_hyvawidgets_brandslider">
+        <label>Brands Slider For Hyvä Themes</label>
+        <description>Upload multiple images to show as brands in a small slider!</description>
+        <parameters>
+            <parameter name="label" xsi:type="text" required="false" visible="true" sort_order="0">
+                <label>Slider Label</label>
+            </parameter>
+            <parameter name="label_text_color" xsi:type="block" visible="true" sort_order="1">
+                <label translate="true">Slider Label Text Color</label>
+                <block class="DnTukadiya\HyvaWidgets\Block\Widget\Field\Color"/>
+            </parameter>
+            <parameter name="label_css_class" xsi:type="text" required="false" visible="true" sort_order="2">
+                <label>Slider Label CSS Class</label>
+            </parameter>
+            <parameter name="view_all_brands_label" xsi:type="text" required="false" visible="true" sort_order="3">
+                <label>"View All Brands" Label</label>
+            </parameter>
+            <parameter name="view_all_brands_link" xsi:type="text" required="false" visible="true" sort_order="4">
+                <label>"View All Brands" Link</label>
+            </parameter>
+            <parameter name="view_all_brands_text_color" xsi:type="block" visible="true" sort_order="5">
+                <label translate="true">"View All Brands" Text Color</label>
+                <block class="DnTukadiya\HyvaWidgets\Block\Widget\Field\Color"/>
+            </parameter>
+            <parameter name="view_all_brands_css_class" xsi:type="text" required="false" visible="true" sort_order="6">
+                <label>"View All Brands" CSS Class</label>
+            </parameter>
+            <parameter name="container_border_color" xsi:type="block" required="false" visible="true" sort_order="7">
+                <label>Container Border Color</label>
+                <block class="DnTukadiya\HyvaWidgets\Block\Widget\Field\Color"/>
+            </parameter>
+            <parameter name="hide_container_border" xsi:type="select" required="false" visible="true" sort_order="8">
+                <label>Hide Container Border ?</label>
+                <options>
+                    <option name="show" value="0" selected="true">
+                        <label>No</label>
+                    </option>
+                    <option name="hide" value="1">
+                        <label>Yes</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="image_default_width" xsi:type="text" required="false" visible="true" sort_order="9">
+                <label>Image Width</label>
+            </parameter>
+            <parameter name="image_default_height" xsi:type="text" required="false" visible="true" sort_order="10">
+                <label>Image Height</label>
+            </parameter>
+            <parameter name="image_border_width" xsi:type="text" required="false" visible="true" sort_order="11">
+                <label>Image Border Width</label>
+            </parameter>
+            <parameter name="image_border_color" xsi:type="block" required="false" visible="true" sort_order="12">
+                <label>Image Border Color</label>
+                <block class="DnTukadiya\HyvaWidgets\Block\Widget\Field\Color"/>
+            </parameter>
+            <parameter name="image_border_radius" xsi:type="text" required="false" visible="true" sort_order="13">
+                <label>Image Border Radius (e.g. 2px, 100%, ...)</label>
+            </parameter>
+            <parameter name="slider_speed" xsi:type="text" required="false" visible="true" sort_order="14">
+                <label>Slider Speed</label>
+            </parameter>
+            <parameter name="brand_link_target" xsi:type="select" required="false" visible="true" sort_order="15">
+                <label>Open Brand URL In New Tab ?</label>
+                <options>
+                    <option name="_bank" value="_blank" selected="true">
+                        <label>Yes</label>
+                    </option>
+                    <option name="_self" value="_self">
+                        <label>No</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="what_to_slide" xsi:type="select" required="false" visible="true" sort_order="16">
+                <label>What To Slide?</label>
+                <options>
+                    <option name="item" value="false" selected="true">
+                        <label>Slider Item</label>
+                    </option>
+                    <option name="page" value="true">
+                        <label>Slider Page</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="conditions" xsi:type="block" required="true" visible="true" sort_order="17">
+                <label translate="true">Add Brand Images</label>
+                <block class="DnTukadiya\HyvaWidgets\Block\Adminhtml\BrandSlider"/>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>

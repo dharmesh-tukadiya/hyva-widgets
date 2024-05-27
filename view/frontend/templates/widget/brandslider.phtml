@@ -1,0 +1,148 @@
+<?php
+
+/**
+ * Hyvä Themes - https://hyva.io
+ * Copyright © Hyvä Themes 2020-present. All rights reserved.
+ * This product is licensed per Magento install
+ * See https://hyva.io/license
+ */
+
+declare(strict_types=1);
+
+use Hyva\Theme\Model\ViewModelRegistry;
+use Magento\Framework\View\Element\Template;
+use Magento\Framework\Escaper;
+
+/** @var ViewModelRegistry $viewModels */
+/** @var Template $block */
+/** @var Escaper $escaper */
+
+$label = $block->getData('label');
+$label = !empty($label) ? $label : "Label";
+$viewAllBrandsLabel = $block->getData('view_all_brands_label') ?? "ViewAll";
+$viewAllBrandsLink = $block->getData('view_all_brands_link') ?? "";
+$showTitle = !empty($label) || !empty($viewAllBrandsLabel);
+$brandImages = $block->getBrandImages();
+$defaultWidth = $block->getData('image_default_width') ?? 170;
+$defaultHeight = $block->getData('image_default_height') ?? 95;
+$itemIndex = 1;
+$uniqId = '_' . uniqid();
+$sliderSpeed = $block->getData('slider_speed') ?? 3000;
+$whatToSlide = $block->getData('what_to_slide') ?? "true";
+$labelTextColor = $block->getData('label_text_color') ?? false;
+$labelCssClass = $block->getData('label_css_class') ?? "";
+$viewAllBrandsTextColor = $block->getData('view_all_brands_text_color') ?? false;
+$viewAllBrandsCssClass = $block->getData('view_all_brands_css_class') ?? "";
+$containerBorderColor = $block->getData('container_border_color') ?? false;
+$hideContainerBorder = $block->getData('hide_container_border') ?? false;
+$linkTarget = $block->getData('brand_link_target') ?? "_self";
+$sectionClasses = $escaper->escapeHtmlAttr($block->getData('section_classes'));
+?>
+
+<script>
+    function carousel<?= $uniqId ?>() {
+        return {
+            container: null,
+            prev: null,
+            next: null,
+            first: null,
+            visibleElements: null,
+            speed: <?= $sliderSpeed ?>,
+            slidePage: <?= $whatToSlide ?>, // set to false for sliding one item at the time, true for the whole visible set
+            sliderTimer: null,
+            init() {
+                this.container = this.$refs.container
+                this.first = this.container.firstElementChild;
+                this.update();
+                this.container.addEventListener('scroll', this.update.bind(this), {
+                    passive: true
+                });
+                this.start();
+            },
+            start() {
+                this.sliderTimer = setInterval(() => {
+                    const isScrollableHorizontally = this.container.scrollWidth > this.container.clientWidth;
+                    const isScrolledToEnd = Math.ceil(this.container.scrollLeft + this.container.clientWidth) >= this.container.scrollWidth;
+                    if (isScrollableHorizontally && isScrolledToEnd) {
+                        this.next = this.first;
+                    }
+                    this.next ? this.scrollTo(this.next) : this.scrollTo(this.first)
+                }, this.speed);
+            },
+            stop() {
+                clearInterval(this.sliderTimer);
+            },
+            update() {
+                const rect = this.container.getBoundingClientRect();
+
+                this.visibleElements = Array.from(this.container.children).filter((child) => {
+                    const childRect = child.getBoundingClientRect();
+                    return childRect.left >= Math.floor(rect.left) && Math.floor(childRect.right) <= rect.right;
+                });
+
+                if (this.visibleElements.length > 0) {
+                    this.next = this.getNextElement();
+                }
+            },
+            getNextElement() {
+                const list = this.visibleElements;
+                const lastElementIsVisible = !(list[list.length - 1].nextElementSibling instanceof HTMLElement);
+                const sibling = this.slidePage ?
+                    list[list.length - 1].nextElementSibling :
+                    (lastElementIsVisible ? null : list[0].nextElementSibling);
+                return (sibling instanceof HTMLElement) ? sibling : null;
+            },
+            scrollTo(element) {
+                const current = this.container;
+                if (!current || !element) return;
+                const nextScrollPosition = element.offsetLeft;
+                current.scroll({
+                    left: nextScrollPosition,
+                    behavior: 'smooth'
+                });
+            }
+        };
+    }
+</script>
+
+<section x-data="carousel<?= $uniqId ?>()" x-defer="intersect" class="relative my-20 <?= $sectionClasses ?>">
+    <?php if ($showTitle) { ?>
+        <div class="mb-4 sm:flex sm:justify-between sm:items-baseline">
+            <?php if (!empty($label)) { ?>
+                <div class="text-3xl leading-9 font-bold text-gray-800 <?= $escaper->escapeHtmlAttr($labelCssClass) ?>" style="<?= $labelTextColor ? "color:{$escaper->escapeHtmlAttr($labelTextColor)};" : "" ?>">
+                    <?= $escaper->escapeHtml(__($label)) ?>
+                </div>
+            <?php } ?>
+            <?php if (!empty($viewAllBrandsLabel)) { ?>
+                <a href="<?= $escaper->escapeUrl($viewAllBrandsLink) ?>" class="text-blue-700 text-lg leading-7 font-semibold <?= $escaper->escapeHtmlAttr($viewAllBrandsCssClass) ?>" style="<?= $viewAllBrandsTextColor ? "color:{$escaper->escapeHtmlAttr($viewAllBrandsTextColor)};" : "" ?>">
+                    <?= $escaper->escapeHtml(__($viewAllBrandsLabel)) ?>
+                </a>
+            <?php } ?>
+        </div>
+    <?php } ?>
+    <div class="snap flex gap-8 sm:gap-20 py-10 border-y border-gray-300 overflow-x-auto overscroll-x-contain md:py-7 md:gap-16" role="region" aria-roledescription="<?= $escaper->escapeHtml(__('Carousel')) ?>" aria-live="polite" x-ref="container" style="<?= $containerBorderColor ? "border-color:{$escaper->escapeHtmlAttr($containerBorderColor)};" : "" ?><?= $hideContainerBorder ? "border:none;" : "" ?>">
+        <?php foreach ($brandImages as $item) { ?>
+            <?php
+            if ($item->getBrandUrl() ?? false) {
+            ?>
+                <a href="<?= $escaper->escapeUrl($item->getBrandUrl()) ?>" style="width:<?= $escaper->escapeHtmlAttr($defaultWidth) . 'px' ?>;height:<?= $escaper->escapeHtmlAttr($defaultHeight) . 'px' ?>;" class="shrink-0 w-[calc(50%_-_theme(spacing.4))] sm:w-[calc(50%_-_theme(spacing.10))] md:w-[170px] flex items-center justify-center overflow-hidden" aria-label="<?= $escaper->escapeHtmlAttr(__('Item %1 of %2', $itemIndex++, count($brandImages))) ?>" aria-roledescription="<?= $escaper->escapeHtml(__('Carousel item')) ?>" :aria-hidden="!visibleElements.includes($el)" target="<?= $escaper->escapeHtmlAttr($linkTarget) ?>">
+                <?php
+            } else {
+                ?>
+                    <div style="width:<?= $escaper->escapeHtmlAttr($defaultWidth) . 'px' ?>;height:<?= $escaper->escapeHtmlAttr($defaultHeight) . 'px' ?>;" class="shrink-0 w-[calc(50%_-_theme(spacing.4))] sm:w-[calc(50%_-_theme(spacing.10))] md:w-[170px] flex items-center justify-center overflow-hidden" aria-label="<?= $escaper->escapeHtmlAttr(__('Item %1 of %2', $itemIndex++, count($brandImages))) ?>" aria-roledescription="<?= $escaper->escapeHtml(__('Carousel item')) ?>" :aria-hidden="!visibleElements.includes($el)">
+                    <?php
+                }
+                    ?>
+                    <img src="<?= !empty($item->getExternalBrandImage()) ? $escaper->escapeUrl($item->getExternalBrandImage()) : $escaper->escapeHtmlAttr($item->getBrandImage()) ?>" alt="Brand Images" loading="lazy">
+                    <?php
+                    if ($item->getBrandUrl() ?? false) {
+                    ?>
+                </a>
+            <?php
+                    } else {
+            ?>
+    </div>
+<?php } ?>
+<?php } ?>
+</div>
+</section>

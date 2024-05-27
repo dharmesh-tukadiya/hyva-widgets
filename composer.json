@@ -1,0 +1,43 @@
+{
+    "name": "dharmesh-tukadiya/module-hyva-widgets",
+    "description": "Hyvä Widgets - Pack Of Mostly Used Widgets For Hyvä Powered Store Fronts",
+    "type": "magento2-module",
+    "license": "GPL-3.0",
+    "version": "1.0.0",
+    "authors": [
+        {
+            "name": "Dharmesh N Tukadiya",
+            "homepage": "https://github.com/dharmesh-tukadiya/",
+            "role": "Magento2 Developer || Hyvä Themes Developer"
+        }
+    ],
+    "minimum-stability": "dev",
+    "keywords": [
+        "magento",
+        "magento widgets",
+        "magento 2",
+        "magento 2 widgets",
+        "magento hyva widgets",
+        "magento 2 hyva widgets",
+        "Hyvä Themes",
+        "Hyvä Themes Widgets",
+        "Magento Hyvä",
+        "Magento Hyvä Widgets",
+        "Magento Hyvä Brand Slider Widget"
+    ],
+    "require": {
+        "php": ">=7.4.0",
+        "magento/framework": "*",
+        "hyva-themes/magento2-default-theme": "^1.3",
+        "hyva-themes/magento2-hyva-widgets": "^1.0",
+        "magento/product-community-edition": ">=2.4.0"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "DnTukadiya\\HyvaWidgets\\": ""
+        }
+    }
+}
