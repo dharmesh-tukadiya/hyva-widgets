@@ -1,4 +1,4 @@
-## Magento 2 Hyvä Themes Widget Module
+## Magento 2 Hyvä Themes Custom Widget Module
 
 This module consist of below widgets for Hyvä Powered Store Fronts!
 
