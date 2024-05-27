@@ -6,6 +6,9 @@ This module consist of below widgets for Hyvä Powered Store Fronts!
 
 ### Images
 1. Brand Slider
+![image](https://github.com/dharmesh-tukadiya/hyva-widgets/assets/140082778/253bfe26-66a0-4165-b136-3e65f10a9710)
+![image](https://github.com/dharmesh-tukadiya/hyva-widgets/assets/140082778/f669f709-6785-48d3-902a-8ef770cc7090)
+
 
 ### Configuration
 -- No Backend Configurations.
