@@ -3,34 +3,45 @@
         <label>Brands Slider For Hyvä Themes</label>
         <description>Upload multiple images to show as brands in a small slider!</description>
         <parameters>
-            <parameter name="label" xsi:type="text" required="false" visible="true" sort_order="0">
+            <parameter name="status" xsi:type="select" required="false" visible="true" sort_order="0">
+                <label>Enable ?</label>
+                <options>
+                    <option name="enabled" value="1" selected="true">
+                        <label>Yes</label>
+                    </option>
+                    <option name="disabled" value="0">
+                        <label>No</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="label" xsi:type="text" required="false" visible="true" sort_order="1">
                 <label>Slider Label</label>
             </parameter>
-            <parameter name="label_text_color" xsi:type="block" visible="true" sort_order="1">
+            <parameter name="label_text_color" xsi:type="block" visible="true" sort_order="2">
                 <label translate="true">Slider Label Text Color</label>
                 <block class="DnTukadiya\HyvaWidgets\Block\Widget\Field\Color"/>
             </parameter>
-            <parameter name="label_css_class" xsi:type="text" required="false" visible="true" sort_order="2">
+            <parameter name="label_css_class" xsi:type="text" required="false" visible="true" sort_order="3">
                 <label>Slider Label CSS Class</label>
             </parameter>
-            <parameter name="view_all_brands_label" xsi:type="text" required="false" visible="true" sort_order="3">
+            <parameter name="view_all_brands_label" xsi:type="text" required="false" visible="true" sort_order="4">
                 <label>"View All Brands" Label</label>
             </parameter>
-            <parameter name="view_all_brands_link" xsi:type="text" required="false" visible="true" sort_order="4">
+            <parameter name="view_all_brands_link" xsi:type="text" required="false" visible="true" sort_order="5">
                 <label>"View All Brands" Link</label>
             </parameter>
-            <parameter name="view_all_brands_text_color" xsi:type="block" visible="true" sort_order="5">
+            <parameter name="view_all_brands_text_color" xsi:type="block" visible="true" sort_order="6">
                 <label translate="true">"View All Brands" Text Color</label>
                 <block class="DnTukadiya\HyvaWidgets\Block\Widget\Field\Color"/>
             </parameter>
-            <parameter name="view_all_brands_css_class" xsi:type="text" required="false" visible="true" sort_order="6">
+            <parameter name="view_all_brands_css_class" xsi:type="text" required="false" visible="true" sort_order="7">
                 <label>"View All Brands" CSS Class</label>
             </parameter>
-            <parameter name="container_border_color" xsi:type="block" required="false" visible="true" sort_order="7">
+            <parameter name="container_border_color" xsi:type="block" required="false" visible="true" sort_order="8">
                 <label>Container Border Color</label>
                 <block class="DnTukadiya\HyvaWidgets\Block\Widget\Field\Color"/>
             </parameter>
-            <parameter name="hide_container_border" xsi:type="select" required="false" visible="true" sort_order="8">
+            <parameter name="hide_container_border" xsi:type="select" required="false" visible="true" sort_order="9">
                 <label>Hide Container Border ?</label>
                 <options>
                     <option name="show" value="0" selected="true">
@@ -41,26 +52,26 @@
                     </option>
                 </options>
             </parameter>
-            <parameter name="image_default_width" xsi:type="text" required="false" visible="true" sort_order="9">
+            <parameter name="image_default_width" xsi:type="text" required="false" visible="true" sort_order="10">
                 <label>Image Width</label>
             </parameter>
-            <parameter name="image_default_height" xsi:type="text" required="false" visible="true" sort_order="10">
+            <parameter name="image_default_height" xsi:type="text" required="false" visible="true" sort_order="11">
                 <label>Image Height</label>
             </parameter>
-            <parameter name="image_border_width" xsi:type="text" required="false" visible="true" sort_order="11">
+            <parameter name="image_border_width" xsi:type="text" required="false" visible="true" sort_order="12">
                 <label>Image Border Width</label>
             </parameter>
-            <parameter name="image_border_color" xsi:type="block" required="false" visible="true" sort_order="12">
+            <parameter name="image_border_color" xsi:type="block" required="false" visible="true" sort_order="13">
                 <label>Image Border Color</label>
                 <block class="DnTukadiya\HyvaWidgets\Block\Widget\Field\Color"/>
             </parameter>
-            <parameter name="image_border_radius" xsi:type="text" required="false" visible="true" sort_order="13">
+            <parameter name="image_border_radius" xsi:type="text" required="false" visible="true" sort_order="14">
                 <label>Image Border Radius (e.g. 2px, 100%, ...)</label>
             </parameter>
-            <parameter name="slider_speed" xsi:type="text" required="false" visible="true" sort_order="14">
+            <parameter name="slider_speed" xsi:type="text" required="false" visible="true" sort_order="15">
                 <label>Slider Speed</label>
             </parameter>
-            <parameter name="brand_link_target" xsi:type="select" required="false" visible="true" sort_order="15">
+            <parameter name="brand_link_target" xsi:type="select" required="false" visible="true" sort_order="16">
                 <label>Open Brand URL In New Tab ?</label>
                 <options>
                     <option name="_bank" value="_blank" selected="true">
@@ -71,7 +82,7 @@
                     </option>
                 </options>
             </parameter>
-            <parameter name="what_to_slide" xsi:type="select" required="false" visible="true" sort_order="16">
+            <parameter name="what_to_slide" xsi:type="select" required="false" visible="true" sort_order="17">
                 <label>What To Slide?</label>
                 <options>
                     <option name="item" value="false" selected="true">
@@ -82,9 +93,104 @@
                     </option>
                 </options>
             </parameter>
-            <parameter name="conditions" xsi:type="block" required="true" visible="true" sort_order="17">
+            <parameter name="conditions" xsi:type="block" required="true" visible="true" sort_order="18">
                 <label translate="true">Add Brand Images</label>
                 <block class="DnTukadiya\HyvaWidgets\Block\Adminhtml\BrandSlider"/>
+            </parameter>
+            <parameter name="section_classes" xsi:type="text" required="false" visible="true" sort_order="19">
+                <label>Section CSS Classes</label>
+            </parameter>
+        </parameters>
+    </widget>
+    <widget class="DnTukadiya\HyvaWidgets\Block\Widget\CategoryCollection" id="dntukadiya_hyvawidgets_categorycollection">
+        <label>Category Collection For Hyvä Themes</label>
+        <description>Upload multiple images to show as Categories in a section!</description>
+        <parameters>
+            <parameter name="status" xsi:type="select" required="false" visible="true" sort_order="0">
+                <label>Enable ?</label>
+                <options>
+                    <option name="enabled" value="1" selected="true">
+                        <label>Yes</label>
+                    </option>
+                    <option name="disabled" value="0">
+                        <label>No</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="label" xsi:type="text" required="false" visible="true" sort_order="1">
+                <label>Section Label</label>
+            </parameter>
+            <parameter name="label_text_color" xsi:type="block" visible="true" sort_order="2">
+                <label translate="true">Section Label Text Color</label>
+                <block class="DnTukadiya\HyvaWidgets\Block\Widget\Field\Color"/>
+            </parameter>
+            <parameter name="label_css_class" xsi:type="text" required="false" visible="true" sort_order="3">
+                <label>Section Label CSS Class</label>
+            </parameter>
+            <parameter name="view_all_categories_label" xsi:type="text" required="false" visible="true" sort_order="4">
+                <label>"View All Categories" Label</label>
+            </parameter>
+            <parameter name="view_all_categories_link" xsi:type="text" required="false" visible="true" sort_order="5">
+                <label>"View All Categories" Link</label>
+            </parameter>
+            <parameter name="view_all_categories_text_color" xsi:type="block" visible="true" sort_order="6">
+                <label translate="true">"View All Categories" Text Color</label>
+                <block class="DnTukadiya\HyvaWidgets\Block\Widget\Field\Color"/>
+            </parameter>
+            <parameter name="view_all_categories_css_class" xsi:type="text" required="false" visible="true" sort_order="7">
+                <label>"View All Categories" CSS Class</label>
+            </parameter>
+            <parameter name="container_border_color" xsi:type="block" required="false" visible="true" sort_order="8">
+                <label>Container Border Color</label>
+                <block class="DnTukadiya\HyvaWidgets\Block\Widget\Field\Color"/>
+            </parameter>
+            <parameter name="container_border_width" xsi:type="text" required="false" visible="true" sort_order="8">
+                <label>Container Border Width (e.g. 2px, 2rem, 5% etc..)</label>
+            </parameter>
+            <parameter name="hide_container_border" xsi:type="select" required="false" visible="true" sort_order="9">
+                <label>Hide Container Border ?</label>
+                <options>
+                    <option name="show" value="0" selected="true">
+                        <label>No</label>
+                    </option>
+                    <option name="hide" value="1">
+                        <label>Yes</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="image_default_width" xsi:type="text" required="false" visible="true" sort_order="10">
+                <label>Image Width (e.g. 100px, 100%, 100vw etc..)</label>
+            </parameter>
+            <parameter name="image_default_height" xsi:type="text" required="false" visible="true" sort_order="11">
+                <label>Image Height (e.g. 100px, 100%, 100vw etc..)</label>
+            </parameter>
+            <parameter name="image_border_width" xsi:type="text" required="false" visible="true" sort_order="12">
+                <label>Image Border Width (e.g. 2px, 2rem, 5% etc..)</label>
+            </parameter>
+            <parameter name="image_border_color" xsi:type="block" required="false" visible="true" sort_order="13">
+                <label>Image Border Color</label>
+                <block class="DnTukadiya\HyvaWidgets\Block\Widget\Field\Color"/>
+            </parameter>
+            <parameter name="image_border_radius" xsi:type="text" required="false" visible="true" sort_order="14">
+                <label>Image Border Radius (e.g. 2px, 10% etc...)</label>
+            </parameter>
+            <parameter name="category_link_target" xsi:type="select" required="false" visible="true" sort_order="15">
+                <label>Open Category URL In New Tab ?</label>
+                <options>
+                    <option name="_bank" value="_blank" selected="true">
+                        <label>Yes</label>
+                    </option>
+                    <option name="_self" value="_self">
+                        <label>No</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="conditions" xsi:type="block" required="true" visible="true" sort_order="16">
+                <label translate="true">Add Category Images</label>
+                <block class="DnTukadiya\HyvaWidgets\Block\Adminhtml\CategoryCollection"/>
+            </parameter>
+            <parameter name="section_classes" xsi:type="text" required="false" visible="true" sort_order="17">
+                <label>Section CSS Classes</label>
             </parameter>
         </parameters>
     </widget>

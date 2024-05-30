@@ -7,19 +7,19 @@ namespace DnTukadiya\HyvaWidgets\Block\Widget;
 use Magento\Widget\Block\BlockInterface;
 use Magento\Framework\DataObject;
 
-class BrandSlider extends \Hyva\Widgets\Block\Widgets\AbstractColumns implements BlockInterface
+class CategoryCollection extends \Hyva\Widgets\Block\Widgets\AbstractColumns implements BlockInterface
 {
     /**
      * @var string
      */
-    protected $_template = 'DnTukadiya_HyvaWidgets::widget/brandslider.phtml';
+    protected $_template = 'DnTukadiya_HyvaWidgets::widget/category-collection.phtml';
 
     /**
      * Fetches `conditions` containing serialized items then turns them into DataObjects
      *
      * @return array|mixed
      */
-    public function getBrandImages()
+    public function getCategoryImages()
     {
         $content = $this->getConditions();
 

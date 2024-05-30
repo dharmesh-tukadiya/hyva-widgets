@@ -1,0 +1,85 @@
+<?php
+
+declare(strict_types=1);
+
+use Hyva\Theme\Model\ViewModelRegistry;
+use Magento\Framework\Escaper;
+
+/** @var ViewModelRegistry $viewModels */
+/** @var DnTukadiya\HyvaWidgets\Block\Widget\CategoryCollection $block */
+/** @var Escaper $escaper */
+
+$label = $block->getData('label');
+$label = !empty($label) ? $label : "Label";
+$labelTextColor = $block->getData('label_text_color') ?? false;
+$labelCssClass = $block->getData('label_css_class') ?? "";
+$viewAllCategoriesLabel = $block->getData('view_all_categories_label') ?? "ViewAll";
+$viewAllCategoriesLink = $block->getData('view_all_categories_link') ?? "";
+$viewAllCategoriesTextColor = $block->getData('view_all_categories_text_color') ?? false;
+$viewAllCategoriesCssClass = $block->getData('view_all_categories_css_class') ?? "";
+$showTitle = !empty($label) || !empty($viewAllCategoriesLabel);
+$containerBorderColor = $block->getData('container_border_color') ?? false;
+$hideContainerBorder = $block->getData('hide_container_border') ?? false;
+$categoryImages = $block->getCategoryImages();
+$defaultWidth = $block->getData('image_default_width') ?? false;
+$defaultHeight = $block->getData('image_default_height') ?? false;
+$uniqId = '_' . uniqid();
+$linkTarget = $block->getData('category_link_target') ?? "_self";
+$sectionClasses = $escaper->escapeHtmlAttr($block->getData('section_classes'));
+$imageBorderWidth = $block->getData('image_border_width') ?? false;
+$imageBorderRadius = $block->getData('image_border_radius') ?? false;
+$imageBorderColor = $block->getData('image_border_color') ?? false;
+?>
+<section class="relative my-20 <?= $sectionClasses ?>">
+    <?php if ($showTitle) { ?>
+        <div class="flex-wrap flex justify-between items-baseline mb-2 mt-10">
+            <?php if (!empty($label)) { ?>
+                <div class="text-3xl leading-9 font-bold text-gray-800 <?= $escaper->escapeHtmlAttr($labelCssClass) ?>" style="<?= $labelTextColor ? "color:{$escaper->escapeHtmlAttr($labelTextColor)};" : "" ?>">
+                    <?= $escaper->escapeHtml(__($label)) ?>
+                </div>
+            <?php } ?>
+            <?php if (!empty($viewAllCategoriesLabel)) { ?>
+                <a href="<?= $escaper->escapeUrl($viewAllCategoriesLink) ?>" class="text-blue-700 text-lg leading-7 font-semibold <?= $escaper->escapeHtmlAttr($viewAllCategoriesCssClass) ?>" style="<?= $viewAllCategoriesTextColor ? "color:{$escaper->escapeHtmlAttr($viewAllCategoriesTextColor)};" : "" ?>">
+                    <?= $escaper->escapeHtml(__($viewAllCategoriesLabel)) ?>
+                </a>
+            <?php } ?>
+        </div>
+    <?php } ?>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 2xl:grids-cols-5 gap-4 border-t border-b pt-2 pb-2" style="<?= $containerBorderColor ? "border-color:{$escaper->escapeHtmlAttr($containerBorderColor)};" : "" ?><?= $hideContainerBorder ? "border:none;" : "" ?>">
+        <?php foreach ($categoryImages as $item) { ?>
+            <?php if ($item->getCategoryUrl() ?? false) { ?>
+                <a href="<?= $escaper->escapeUrl($item->getCategoryUrl()) ?>" class="group cursor-pointer relative overflow-hidden bg-white text-white isolate flex flex-col items-center justify-center" target="<?= $escaper->escapeHtmlAttr($linkTarget) ?>">
+                <?php } else { ?>
+                    <div class="group cursor-pointer relative overflow-hidden bg-white text-white isolate flex flex-col items-center justify-center">
+                    <?php } ?>
+                    <span class="col-start-1 row-start-1 w-full lg:scale-95 lg:group-hover:scale-100 transition-all duration-300" style="<?= $defaultWidth ? 'width:' . $escaper->escapeHtmlAttr($defaultWidth) . ';' : '' ?><?= $defaultHeight ? 'height:' . $escaper->escapeHtmlAttr($defaultHeight) . ';' : '' ?>">
+                        <img src="<?= !empty($item->getExternalCategoryImage()) ? $escaper->escapeUrl($item->getExternalCategoryImage()) : $escaper->escapeHtmlAttr($item->getCategoryImage()) ?>" alt="Category Images" loading="lazy" class="object-contain" style="     image-rendering: -moz-crisp-edges;         /* Firefox */
+                                    image-rendering:   -o-crisp-edges;         /* Opera */
+                                    image-rendering: -webkit-optimize-contrast;/* Webkit (non-standard naming) */
+                                    image-rendering: crisp-edges;
+                                    -ms-interpolation-mode: nearest-neighbor;  /* IE (non-standard property) */
+                                    <?= $imageBorderWidth ? 'border-width:' . $imageBorderWidth . ';' : '' ?>
+                                    <?= $imageBorderRadius ? 'border-radius:' . $imageBorderRadius . ';' : '' ?>
+                                    <?= $imageBorderColor ? 'border-color:' . $imageBorderColor . ';' : '' ?>
+
+                        ">
+                    </span>
+
+                    <?php if (!empty($item->getCategoryDescription())) { ?>
+                        <span class="p-4 text-sm font-bold text-black cursor-pointer text-center">
+                            <span class=""><?= $escaper->escapeUrl(__($item->getCategoryDescription())) ?></span>
+                        </span>
+                    <?php } ?>
+                    <?php if (!empty($item->getCategoryName())) { ?>
+                        <span class="p-4 text-lg font-bold text-black cursor-pointer text-center">
+                            <span class=""><?= $escaper->escapeUrl(__($item->getCategoryName())) ?></span>
+                        </span>
+                    <?php } ?>
+                    <?php if ($item->getCategoryUrl() ?? false) { ?>
+                </a>
+            <?php } else { ?>
+            <?php } ?>
+    </div>
+<?php } ?>
+</div>
+</section>
