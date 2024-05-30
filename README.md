@@ -1,13 +1,18 @@
-## Magento 2 Hyvä Themes Custom Widget Module
+![image](https://github.com/dharmesh-tukadiya/hyva-widgets/assets/140082778/caf7c8d2-5473-4e33-9e8d-d6dececd92fd)## Magento 2 Hyvä Themes Custom Widget Module
 
 This module consist of below widgets for Hyvä Powered Store Fronts!
 
 1. Brand Slider
+2. Category Collection
 
 ### Images
 1. Brand Slider
 ![image](https://github.com/dharmesh-tukadiya/hyva-widgets/assets/140082778/253bfe26-66a0-4165-b136-3e65f10a9710)
 ![image](https://github.com/dharmesh-tukadiya/hyva-widgets/assets/140082778/f669f709-6785-48d3-902a-8ef770cc7090)
+
+2. Category Collection
+![image](https://github.com/dharmesh-tukadiya/hyva-widgets/assets/140082778/aa659144-1be0-4b84-a3aa-d11362450c7d)
+![image](https://github.com/dharmesh-tukadiya/hyva-widgets/assets/140082778/fe1953a9-994b-4c37-8fee-28a6e2ea4628)
 
 
 ### Configuration
