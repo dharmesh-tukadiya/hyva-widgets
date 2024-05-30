@@ -1,4 +1,4 @@
-![image](https://github.com/dharmesh-tukadiya/hyva-widgets/assets/140082778/caf7c8d2-5473-4e33-9e8d-d6dececd92fd)## Magento 2 Hyvä Themes Custom Widget Module
+## Magento 2 Hyvä Themes Custom Widget Module
 
 This module consist of below widgets for Hyvä Powered Store Fronts!
 
