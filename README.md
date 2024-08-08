@@ -44,4 +44,4 @@ This Magento 2 module is developed and maintained by Dharmesh N Tukadiya.
 
 ---
 
-Thank you for using the Dynamic Google reCAPTCHA module for Magento 2. If you find it useful, consider starring the [GitHub repository](https://github.com/dharmesh-tukadiya/hyva-widgets) to show your support!
+Thank you for using the Magento 2 Hyvä Themes Custom Widget module for Magento 2. If you find it useful, consider starring the [GitHub repository](https://github.com/dharmesh-tukadiya/hyva-widgets) to show your support!
